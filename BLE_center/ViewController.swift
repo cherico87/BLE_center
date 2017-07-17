@@ -61,7 +61,7 @@ class ViewController: UIViewController, UITextFieldDelegate, CBPeripheralDelegat
     @IBAction func readBtn(_ sender: Any) {
         
         
-        if let characteristic = charDictionary[characteristicField.text!] {
+        if let characteristic = charDictionary[characteristicField.text!.uppercased()] {
             print("read")
             logD(message: "read data, characteristic: \(characteristicField.text)")
             
@@ -72,7 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate, CBPeripheralDelegat
     
     @IBAction func notifyBtn(_ sender: Any) {
         
-        if let characteristic = charDictionary[characteristicField.text!] {
+        if let characteristic = charDictionary[characteristicField.text!.uppercased()] {
             print("nofify")
             logD(message: "set notify, characteristic: \(characteristicField.text) ")
             selectedPeripheral?.setNotifyValue(true, for: characteristic)
@@ -85,31 +85,34 @@ class ViewController: UIViewController, UITextFieldDelegate, CBPeripheralDelegat
         
         
         
-        if let characteristic = charDictionary[characteristicField.text!]  {
+        if let characteristic = charDictionary[characteristicField.text!.uppercased()]  {
             print("set notify and write")
             
             logD(message: "set notify, characteristic: \(characteristicField.text) ")
             selectedPeripheral?.setNotifyValue(true, for: characteristic)
             //送出notify
-        }
-        
-        //let value: [UInt8] = [0x51, 0x26, 0x00, 0x00, 0x00, 0x00, 0xA3, 0x1A]
-        //let data = Data(bytes:value)
-        //直接送出ByteArray
-        
-        
-        let hexString = stringToBytes(senddataField.text!)
-        let data2 = Data(bytes:hexString!)
-        //將String轉換為ByteArray格式
-        
-        do {
-            try sendData(data: data2 as Data, uuidString: characteristicField.text!)
-        } catch {
-            print(error)
-            logD(message: error as! String)
-        }
-        //送出資料
+            
+            //let value: [UInt8] = [0x51, 0x26, 0x00, 0x00, 0x00, 0x00, 0xA3, 0x1A]
+            //let data = Data(bytes:value)
+            //直接送出ByteArray
+            
+            
+            let hexString = stringToBytes(senddataField.text!.uppercased())
+            
+            let data2 = Data(bytes:hexString!)
+            //將String轉換為ByteArray格式
+            
+            do {
+                try sendData(data: data2 as Data, uuidString: characteristicField.text!.uppercased())
+            } catch {
+                print(error)
+                logD(message: error as! String)
+            }
+            //送出資料
 
+        }
+        
+        
         
     }
     
@@ -122,12 +125,12 @@ class ViewController: UIViewController, UITextFieldDelegate, CBPeripheralDelegat
             //let data = Data(bytes:value)
             //直接送出ByteArray
             
-            let hexString = stringToBytes(senddataField.text!)
+            let hexString = stringToBytes(senddataField.text!.uppercased())
             let data2 = Data(bytes:hexString!)
             //String轉ByteArray
             
             do {
-                try sendData(data: data2 as Data, uuidString: characteristicField.text!)
+                try sendData(data: data2 as Data, uuidString: characteristicField.text!.uppercased())
             } catch {
                 print(error)
             }
@@ -158,8 +161,7 @@ class ViewController: UIViewController, UITextFieldDelegate, CBPeripheralDelegat
         
         scanView.isHidden = true
 
-        mCentralManager = CBCentralManager(delegate: self, queue: nil,
-                                           options:[CBCentralManagerOptionShowPowerAlertKey: true])
+        mCentralManager = CBCentralManager(delegate: self, queue: nil, options:[CBCentralManagerOptionShowPowerAlertKey: true])
 
         
         
@@ -466,7 +468,7 @@ class ViewController: UIViewController, UITextFieldDelegate, CBPeripheralDelegat
             //保證收到的特徵值有在搜尋到的陣列裡面,若沒有則拋出錯誤
         }
         
-        if uuidString == characteristicField.text {
+        if uuidString == characteristicField.text?.uppercased() {
             
             selectedPeripheral?.writeValue(
                 data,

@@ -99,6 +99,7 @@
 				TargetAttributes = {
 					C06CE36B1F17058B0035C9CF = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = AY957U87NM;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -266,7 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AY957U87NM;
 				INFOPLIST_FILE = BLE_center/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jake.BLE-center";
@@ -279,7 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AY957U87NM;
 				INFOPLIST_FILE = BLE_center/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jake.BLE-center";
@@ -307,6 +308,7 @@
 				C06CE3801F17058B0035C9CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
